@@ -37,7 +37,7 @@ if (!$report) {
 }
 
 //Add UserID to the report object
-$report->user_id = $User->id
+$report->user_id = $USER->id
 
 $category = $DB->get_record('report_customsql_categories', ['id' => $report->categoryid], '*', MUST_EXIST);
 
