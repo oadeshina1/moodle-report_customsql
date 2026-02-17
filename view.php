@@ -36,6 +36,9 @@ if (!$report) {
     throw new moodle_exception('invalidreportid', 'report_customsql', report_customsql_url('index.php'), $id);
 }
 
+//Add UserID to the report object
+$report->user_id = $User->id
+
 $category = $DB->get_record('report_customsql_categories', ['id' => $report->categoryid], '*', MUST_EXIST);
 
 $embed = optional_param('embed', 0, PARAM_BOOL);
