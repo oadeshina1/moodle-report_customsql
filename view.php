@@ -135,6 +135,10 @@ if ($report->runable == 'manual') {
         $csvtimestamp = report_customsql_generate_csv($report, time());
         // Get the updated execution times.
         $report = $DB->get_record('report_customsql_queries', ['id' => $id]);
+        
+        //Add UserID to the report object
+        $report->user_id = $USER->id;
+        
     } catch (Exception $e) {
         throw new moodle_exception(
             'queryfailed',
