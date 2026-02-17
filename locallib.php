@@ -233,9 +233,9 @@ function report_customsql_is_integer($value) {
  */
 function report_customsql_csv_filename($report, $timenow) {
     if ($report->runable == 'manual') {
-        return report_customsql_temp_cvs_name($report->user_id, $timenow);
+        return report_customsql_temp_cvs_name($report->user_report_id, $timenow);
     } else if ($report->singlerow) {
-        return report_customsql_accumulating_cvs_name($report->user_id);
+        return report_customsql_accumulating_cvs_name($report->user_report_id);
     } else {
         [$timestart] = report_customsql_get_starts($report, $timenow);
         return report_customsql_scheduled_cvs_name($report->id, $timestart);

@@ -60,6 +60,7 @@ function report_customsql_pluginfile($course, $cm, $context, $filearea, $args, $
     $dataformat = required_param('dataformat', PARAM_ALPHA);
 
     $report = $DB->get_record('report_customsql_queries', ['id' => $id]);
+    
     if (!$report) {
         throw new moodle_exception(
             'invalidreportid',
@@ -68,6 +69,8 @@ function report_customsql_pluginfile($course, $cm, $context, $filearea, $args, $
             $id,
         );
     }
+
+    $report->user_report_id =  $USER->id.'-'.$report->id;
 
     require_login();
     $context = context_system::instance();

@@ -37,7 +37,7 @@ if (!$report) {
 }
 
 //Add UserID to the report object
-$report->user_id = $USER->id;
+$report->user_report_id =  $USER->id.'-'.$report->id;
 
 $category = $DB->get_record('report_customsql_categories', ['id' => $report->categoryid], '*', MUST_EXIST);
 
@@ -137,7 +137,7 @@ if ($report->runable == 'manual') {
         $report = $DB->get_record('report_customsql_queries', ['id' => $id]);
         
         //Add UserID to the report object
-        $report->user_id = $USER->id;
+        $report->user_report_id =  $USER->id.'-'.$report->id;
 
     } catch (Exception $e) {
         throw new moodle_exception(
@@ -252,8 +252,8 @@ if (is_null($csvtimestamp)) {
         if (!empty($paramvalues)) {
             $urlparams = $paramvalues;
         }
-        $urlparams['timestamp'] = $csvtimestamp;
-        $downloadurl = report_customsql_downloadurl($report->user_id, $urlparams);
+        //$urlparams['timestamp'] = $csvtimestamp;
+        $downloadurl = report_customsql_downloadurl($id, $urlparams);
         echo $OUTPUT->download_dataformat_selector(
             get_string('downloadthisreportas', 'report_customsql'),
             $downloadurl,
