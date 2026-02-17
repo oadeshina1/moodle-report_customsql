@@ -138,7 +138,7 @@ if ($report->runable == 'manual') {
         
         //Add UserID to the report object
         $report->user_id = $USER->id;
-        
+
     } catch (Exception $e) {
         throw new moodle_exception(
             'queryfailed',
@@ -253,7 +253,7 @@ if (is_null($csvtimestamp)) {
             $urlparams = $paramvalues;
         }
         $urlparams['timestamp'] = $csvtimestamp;
-        $downloadurl = report_customsql_downloadurl($id, $urlparams);
+        $downloadurl = report_customsql_downloadurl($report->user_id, $urlparams);
         echo $OUTPUT->download_dataformat_selector(
             get_string('downloadthisreportas', 'report_customsql'),
             $downloadurl,
